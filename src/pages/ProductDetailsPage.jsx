@@ -49,6 +49,9 @@ const ProductDetailsPage = ({ product, onClose }) => {
           />
           <p>{product.specifications[activeTab].details}</p>
         </div>
+        <div className="close-button">
+          <button onClick={onClose} className="tab-btn">Place Order Now</button>
+        </div>
       </div>
     </div>
   );
