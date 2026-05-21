@@ -1,137 +1,319 @@
-import { Link } from 'react-router-dom'
-import logo from '/logo.jpeg'
-import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+    Menu,
+    X,
+    User,
+    Search,
+    Bell,
+    ChevronRight
+} from "lucide-react";
 
-function Nav() {
+import "../styles/navbar.css";
+import logo from "/logo.jpeg";
+
+function Navbar() {
+
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const [visits, setVisits] = useState(0);
 
-  useEffect(() => {
-    const storedVisits = localStorage.getItem('visitCount');
-    const newCount = storedVisits ? parseInt(storedVisits) + 1 : 1;
-    setVisits(newCount);
-    localStorage.setItem('visitCount', newCount);
-  }, []);
-  return (
-    <>
-      {/* NAVBAR */}
-        <div className="nav w-100 fixed-top shadow-sm">
-        <nav className="navbar navbar-expand-lg py-1 px-2 justify-content-between align-items-center w-100 nav-wrapper">
-            {/* TOGGLE BUTTON */}
-            <button 
-            className="navbar-toggler text-white bg-white" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+    // VISITOR COUNTER
+    useEffect(() => {
 
-            {/* MOBILE LOGO */}
-            <Link to='/' className="navbar-brand mx-auto order-0 d-lg-none d-flex align-items-center gap-2">
-            <h2 className="brand-title">
-                <img src={logo} alt="Car Breezy Logo"
-                style={{height: '30px',  width: 'auto', verticalAlign: 'middle', borderRadius: '5rem'}}/>
-                CAR-BREEZY
-            </h2>
-            </Link>
+        const storedVisits =
+            localStorage.getItem("visitCount");
 
-            {/* MOBILE ICON */}
-            <ul className="d-lg-none d-flex align-items-center gap-3">
-                <li className="nav-item">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">
-                        <i className="bi bi-person fs-5 text-white"></i>
-                    </a>
-                </li>
-            </ul>
+        const newCount =
+            storedVisits
+                ? parseInt(storedVisits) + 1
+                : 1;
 
-            {/* MAIN NAV */}
+        setVisits(newCount);
 
-            <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-                {/* LEFT NAV LINK */}
-                <ul className="navbar-nav nav-menu align-items-center gap-4">
-                    <li className="nav-item">
-                        <Link to='/' className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/products/new' className="nav-link">New</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/products/used'  className="nav-link">Used</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/products/brands' className="nav-link">Brands</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/products/offers'  className="nav-link">Offers</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/Gallery'  className="nav-link">Gallery</Link>
-                    </li>
-                </ul>
+        localStorage.setItem(
+            "visitCount",
+            newCount
+        );
 
-                
-                
+    }, []);
 
-                {/* CENTER LOGO */}
+    // SCROLL EFFECT
+    useEffect(() => {
 
-                <Link to='' className="navbar-brand order-0 d-none d-lg-flex">
-                    <h2 className="m-0 fw-bold" style={{letterSpacing:'2px', color:'#14ff72cb'}}>
-                        <img src={logo} alt="Car Breezy Logo"
-                        style={{height: '30px',  width: 'auto', verticalAlign: 'middle', borderRadius: '5rem'}}/>
-                        CAR-BREEZY</h2>
-                </Link>
-                
-                <div className="visit-count">  Visitors: {visits}</div>
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 40);
+        };
 
-                {/* RIGHT ICONS */}
-                <ul className="navbar-nav d-none d-lg-flex align-items-center gap-4">
-                <li className="nav-item">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">
-                        <i className="bi bi-person fs-5 text-white"></i>
-                    </a>
-                </li>
-                </ul>
-            </div>
-        </nav>
-      </div>
+        window.addEventListener(
+            "scroll",
+            handleScroll
+        );
 
-      {/* SIGN-UP MODAL */}
-      <div className="modal fade" id="signupModal" tabIndex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content p-4">
-                <div className="modal-header border-0">
-                    <h5 className="modal-title fw-bold" id="signupModalLabel">Sign Up</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div className="modal-body">
-                    <form>
-                        <div className="mb-3">
-                            <label className="form-label">Name</label>
-                            <input type="text" className="form-control" placeholder="Enter your Name" required/>
+        return () =>
+            window.removeEventListener(
+                "scroll",
+                handleScroll
+            );
+
+    }, []);
+
+    // NAVIGATION LINKS
+    const navLinks = [
+        { name: "Home", path: "/" },
+        { name: "New Cars", path: "/products/new" },
+        { name: "Used Cars", path: "/products/used" },
+        { name: "Brands", path: "/products/brands" },
+        { name: "Gallery", path: "/gallery" },
+        { name: "Offers", path: "/products/offers" },
+    ];
+
+    return (
+        <>
+            {/* =========================
+                NAVBAR
+            ========================= */}
+
+            <header
+                className={`navbar ${isScrolled ? "scrolled" : ""
+                    }`}
+            >
+
+                <div className="container navbar-container">
+
+                    {/* =========================
+                        LOGO
+                    ========================= */}
+
+                    <Link
+                        to="/"
+                        className="navbar-logo"
+                    >
+                        <img
+                            src={logo}
+                            alt="Car Breezy Logo"
+                        />
+
+                        <div className="logo-text">
+                            <span>CAR-BREEZY</span>
+
+                            <small>
+                                Luxury Automotive
+                            </small>
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">Email Address</label>
-                            <input type="email" className="form-control" placeholder="Enter your Email Address" required/>
+                    </Link>
+
+                    {/* =========================
+                        DESKTOP NAV
+                    ========================= */}
+
+                    <nav className="navbar-links">
+
+                        {navLinks.map((link) => (
+
+                            <NavLink
+                                key={link.name}
+                                to={link.path}
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "navbar-link active"
+                                        : "navbar-link"
+                                }
+                            >
+                                {link.name}
+                            </NavLink>
+
+                        ))}
+
+                    </nav>
+
+                    {/* =========================
+                        ACTIONS
+                    ========================= */}
+
+                    <div className="navbar-actions">
+
+                        {/* SEARCH */}
+
+                        <button className="nav-icon">
+                            <Search size={18} />
+                        </button>
+
+                        {/* NOTIFICATION */}
+
+                        <button className="nav-icon">
+                            <Bell size={18} />
+                        </button>
+
+                        {/* ACCOUNT */}
+
+                        <button
+                            className="account-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#signupModal"
+                        >
+                            <User size={18} />
+
+                            <span>Account</span>
+                        </button>
+
+                        {/* VISITORS */}
+
+                        <div className="visit-pill">
+                            <span className="pulse"></span>
+
+                            {visits}+ Visitors
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">PassWord</label>
-                            <input type="password" className="form-control" placeholder="Enter your Password" required/>
-                        </div>
-                        <p className="text-muted">
-                            By signing up, you agree to our <a href="#" className="text-success text-decoration-none">Terms & Conditions</a> and <a href="#" className="text-success text-decoration-none">Privacy Policy</a>.
-                        </p>
-                        <button type="button" className="btn btn-dark w-100">Sign Up</button>
-                    </form>
-                    <div className="text-center mt-3">
-                        <p>Aleady have an account? <a href="" className="text-success fw-bold">Sign Up</a></p>
+
+                        {/* MOBILE TOGGLE */}
+
+                        <button
+                            className="mobile-toggle"
+                            onClick={() =>
+                                setMenuOpen(!menuOpen)
+                            }
+                        >
+                            {menuOpen
+                                ? <X size={28} />
+                                : <Menu size={28} />
+                            }
+                        </button>
+
                     </div>
+
                 </div>
+
+                {/* =========================
+                    MOBILE MENU
+                ========================= */}
+
+                <div
+                    className={`mobile-menu ${menuOpen ? "active" : ""
+                        }`}
+                >
+
+                    {navLinks.map((link) => (
+
+                        <NavLink
+                            key={link.name}
+                            to={link.path}
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "mobile-link active"
+                                    : "mobile-link"
+                            }
+                            onClick={() =>
+                                setMenuOpen(false)
+                            }
+                        >
+
+                            <span>{link.name}</span>
+
+                            <ChevronRight size={18} />
+
+                        </NavLink>
+
+                    ))}
+
+                    <button
+                        className="mobile-account-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#signupModal"
+                    >
+                        Create Account
+                    </button>
+
+                </div>
+
+            </header>
+
+            {/* =========================
+                SIGNUP MODAL
+            ========================= */}
+
+            <div
+                className="modal fade"
+                id="signupModal"
+                tabIndex="-1"
+                aria-hidden="true"
+            >
+
+                <div className="modal-dialog modal-dialog-centered">
+
+                    <div className="modal-content signup-modal">
+
+                        <div className="modal-header border-0">
+
+                            <div>
+                                <h5 className="modal-title">
+                                    Welcome Back
+                                </h5>
+
+                                <p className="modal-subtitle">
+                                    Create your Car-Breezy account
+                                </p>
+                            </div>
+
+                            <button
+                                type="button"
+                                className="btn-close btn-close-white"
+                                data-bs-dismiss="modal"
+                            ></button>
+
+                        </div>
+
+                        <div className="modal-body">
+
+                            <form className="signup-form">
+
+                                <div className="input-group-custom">
+                                    <label>
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        placeholder="John Doe"
+                                    />
+                                </div>
+
+                                <div className="input-group-custom">
+                                    <label>
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        placeholder="john@example.com"
+                                    />
+                                </div>
+
+                                <div className="input-group-custom">
+                                    <label>
+                                        Password
+                                    </label>
+
+                                    <input
+                                        type="password"
+                                        placeholder="Enter password"
+                                    />
+                                </div>
+
+                                <button className="btn-primary-custom">
+                                    Create Account
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-        </div>
-      </div>
-    </>
-  )
+        </>
+    );
 }
-export default Nav;
+
+export default Navbar;

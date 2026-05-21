@@ -1,57 +1,154 @@
-import React from "react";
+import "../styles/contact.css";
 
 function ContactUs() {
   return (
-    <section className="contact-section d-flex align-items-center justify-content-center" id="contactUs">
-      <div className="contact-container p-5 text-white">
-        <h1 className="text-center mb-4">Contact Us</h1>
-        <p className="text-center mb-5">
-          Have questions or want to book your dream car? Get in touch with us!
-        </p>
+    <section className="contact section" id="contact">
 
-        <div className="row g-4">
-          {/* Contact Form */}
-          <div className="col-lg-6">
-            <form>
-              <div className="mb-3">
-                <label className="form-label">Full Name</label>
-                <input type="text" className="form-control" placeholder="John Doe" />
+      <div className="container">
+
+        {/* HEADER */}
+
+        <div className="section-title">
+
+          <span>Contact Us</span>
+
+          <h2>
+            Let’s Find Your
+            Dream Car
+          </h2>
+
+          <p className="contact-description">
+            Our team is ready to help you
+            discover the perfect luxury vehicle.
+          </p>
+
+        </div>
+
+        {/* CONTACT WRAPPER */}
+
+        <div className="contact-wrapper">
+
+          {/* LEFT SIDE */}
+
+          <div className="contact-info">
+
+            <div className="contact-card glass">
+
+              <div className="contact-icon">
+                📍
               </div>
-              <div className="mb-3">
-                <label className="form-label">Email Address</label>
-                <input type="email" className="form-control" placeholder="you@example.com" />
+
+              <div>
+
+                <h3>Visit Showroom</h3>
+
+                <p>
+                  123 Luxury Avenue,
+                  Auto City
+                </p>
+
               </div>
-              <div className="mb-3">
-                <label className="form-label">Message</label>
+
+            </div>
+
+            <div className="contact-card glass">
+
+              <div className="contact-icon">
+                📞
+              </div>
+
+              <div>
+
+                <h3>Call Us</h3>
+
+                <p>
+                  +1 234 567 890
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="contact-card glass">
+
+              <div className="contact-icon">
+                📧
+              </div>
+
+              <div>
+
+                <h3>Email Support</h3>
+
+                <p>
+                  support@carbreezy.com
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT SIDE */}
+
+          <div className="contact-form-wrapper glass">
+
+            <form className="contact-form">
+
+              <div className="form-group">
+
+                <label>
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                />
+
+              </div>
+
+              <div className="form-group">
+
+                <label>
+                  Email Address
+                </label>
+
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                />
+
+              </div>
+
+              <div className="form-group">
+
+                <label>
+                  Message
+                </label>
+
                 <textarea
-                  className="form-control"
-                  rows="4"
-                  placeholder="Type your message..."
+                  rows="6"
+                  placeholder="Tell us about your dream car..."
                 ></textarea>
+
               </div>
-              <button type="submit" className="btn btn-light w-100">
+
+              <button
+                type="submit"
+                className="btn-primary contact-btn"
+              >
                 Send Message
               </button>
+
             </form>
+
           </div>
 
-          {/* Contact Info */}
-          <div className="col-lg-6">
-            <div className="info-box mb-4">
-              <h5>📍 Address</h5>
-              <p>123 Car Street, Auto City, USA</p>
-            </div>
-            <div className="info-box mb-4">
-              <h5>📞 Phone</h5>
-              <p>+1 234 567 890</p>
-            </div>
-            <div className="info-box">
-              <h5>📧 Email</h5>
-              <p>support@carbreezy.com</p>
-            </div>
-          </div>
         </div>
+
       </div>
+
     </section>
   );
 }

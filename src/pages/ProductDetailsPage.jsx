@@ -1,57 +1,171 @@
-import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import {
+  FaTimes,
+  FaGasPump,
+  FaCarSide,
+  FaTachometerAlt,
+  FaCogs,
+} from "react-icons/fa";
+import "../styles/product-details-page.css";
 
 const ProductDetailsPage = ({ product, onClose }) => {
   const [activeTab, setActiveTab] = useState("internal");
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   if (!product) return null;
 
   const tabs = [
-    { key: "internal", label: "Internal Specification" },
-    { key: "external", label: "External" },
-    { key: "engine", label: "Engine" },
-    { key: "dimensions", label: "Dimensions" }
+    {
+      key: "internal",
+      label: "Interior",
+      icon: <FaCarSide />,
+    },
+    {
+      key: "external",
+      label: "Exterior",
+      icon: <FaTachometerAlt />,
+    },
+    {
+      key: "engine",
+      label: "Engine",
+      icon: <FaCogs />,
+    },
+    {
+      key: "dimensions",
+      label: "Dimensions",
+      icon: <FaGasPump />,
+    },
   ];
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-btn" onClick={onClose}>
+    <div className="details-overlay">
+      <div className="details-modal">
+
+        {/* CLOSE BUTTON */}
+        <button className="details-close-btn" onClick={onClose}>
           <FaTimes />
         </button>
 
-        <h2>{product.name}</h2>
-        <p className="price">{product.price}</p>
+        {/* TOP SECTION */}
+        <div className="details-top">
 
-        <img
-          src={product.image}
-          alt={product.name}
-          className="main-image"
-        />
+          {/* IMAGE */}
+          <div className="details-image-wrapper">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="details-main-image"
+            />
+          </div>
 
-        <div className="tabs">
-          {tabs.map(tab => (
+          {/* INFO */}
+          <div className="details-info">
+
+            <span className="details-badge">
+              {product.tag || "Premium"}
+            </span>
+
+            <h2 className="details-title">
+              {product.name}
+            </h2>
+
+            <p className="details-price">
+              ₦ {product.price?.toLocaleString()}
+            </p>
+
+            <p className="details-description">
+              Experience luxury, performance, and comfort with the
+              {` ${product.name}`}. Built for drivers who demand
+              elegance and power in one complete package.
+            </p>
+
+            {/* QUICK SPECS */}
+            <div className="details-specs-grid">
+
+              <div className="spec-card">
+                <span>Transmission</span>
+                <strong>Automatic</strong>
+              </div>
+
+              <div className="spec-card">
+                <span>Fuel Type</span>
+                <strong>Petrol</strong>
+              </div>
+
+              <div className="spec-card">
+                <span>Condition</span>
+                <strong>{product.tag}</strong>
+              </div>
+
+              <div className="spec-card">
+                <span>Category</span>
+                <strong>{product.type}</strong>
+              </div>
+
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="details-actions">
+              <button className="primary-btn">
+                Place Order
+              </button>
+
+              <button className="secondary-btn">
+                Save Car
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* TABS */}
+        <div className="details-tabs">
+
+          {tabs.map((tab) => (
             <button
               key={tab.key}
-              className={`tab-btn ${activeTab === tab.key ? "active" : ""}`}
+              className={`details-tab-btn ${
+                activeTab === tab.key ? "active" : ""
+              }`}
               onClick={() => setActiveTab(tab.key)}
             >
-              {tab.label}
+              {tab.icon}
+              <span>{tab.label}</span>
             </button>
           ))}
+
         </div>
 
-        <div className="tab-content">
-          <img
-            src={product.specifications[activeTab].image}
-            alt={activeTab}
-            className="tab-image"
-          />
-          <p>{product.specifications[activeTab].details}</p>
+        {/* TAB CONTENT */}
+        <div className="details-content">
+
+          <div className="details-content-image">
+            <img
+              src={product.specifications?.[activeTab]?.image}
+              alt={activeTab}
+            />
+          </div>
+
+          <div className="details-content-text">
+            <h3>
+              {tabs.find((t) => t.key === activeTab)?.label}
+            </h3>
+
+            <p>
+              {
+                product.specifications?.[activeTab]?.details
+              }
+            </p>
+          </div>
+
         </div>
-        <div className="close-button">
-          <button onClick={onClose} className="tab-btn">Place Order Now</button>
-        </div>
+
       </div>
     </div>
   );

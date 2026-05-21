@@ -1,0 +1,447 @@
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #000;
+}
+
+/* SWIPER */
+
+.hero-swiper,
+.hero-slide {
+    width: 100%;
+    height: 100%;
+}
+
+/* VIDEO */
+
+.hero-video {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scale(1.05);
+
+    animation: heroZoom 12s linear infinite;
+}
+
+@keyframes heroZoom {
+
+    0% {
+        transform: scale(1.05);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+/* OVERLAYS */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(0,0,0,0.9),
+            rgba(0,0,0,0.4),
+            rgba(0,0,0,0.75)
+        );
+
+    z-index: 1;
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(0,255,140,0.18),
+            transparent 40%
+        );
+
+    z-index: 1;
+}
+
+/* CONTENT */
+
+.hero-content {
+    position: relative;
+
+    z-index: 3;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-left {
+    max-width: 760px;
+}
+
+/* BADGE */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.9rem 1.2rem;
+
+    border-radius: 999px;
+
+    margin-bottom: 1.5rem;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    color: var(--primary);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    backdrop-filter: blur(10px);
+}
+
+/* TITLE */
+
+.hero-left h1 {
+    font-size:
+        clamp(4rem, 8vw, 8rem);
+
+    line-height: 0.9;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    margin-bottom: 1rem;
+}
+
+.hero-left h1 span {
+    display: block;
+
+    color: var(--primary);
+
+    text-shadow:
+        0 0 25px rgba(0,255,140,0.4);
+}
+
+/* TYPE */
+
+.hero-left h2 {
+    font-size:
+        clamp(1.5rem, 4vw, 3rem);
+
+    color: #fff;
+
+    margin-bottom: 1rem;
+
+    font-weight: 700;
+}
+
+/* DESCRIPTION */
+
+.hero-left p {
+    max-width: 620px;
+
+    font-size: 1.1rem;
+    line-height: 1.8;
+
+    color: #d1d5db;
+
+    margin-bottom: 2.5rem;
+}
+
+/* BUTTONS */
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 3rem;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    padding: 1rem 1.6rem;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+
+    transition: 0.4s ease;
+}
+
+.primary-btn {
+    background: var(--primary);
+
+    color: #000;
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 30px rgba(0,255,140,0.3);
+}
+
+.secondary-btn {
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    color: white;
+
+    backdrop-filter: blur(10px);
+}
+
+.secondary-btn:hover {
+    background:
+        rgba(255,255,255,0.14);
+
+    transform: translateY(-4px);
+}
+
+/* STATS */
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    flex-wrap: wrap;
+}
+
+.hero-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem 1.2rem;
+
+    min-width: 220px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+}
+
+.hero-stat-card svg {
+    color: var(--primary);
+}
+
+.hero-stat-card h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+
+    margin-bottom: 0.2rem;
+}
+
+.hero-stat-card span {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+/* SCROLL */
+
+.scroll-indicator {
+    position: absolute;
+
+    bottom: 2rem;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.8rem;
+
+    color: white;
+
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 60px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--primary),
+            transparent
+        );
+
+    animation: scrollAnim 2s infinite;
+}
+
+@keyframes scrollAnim {
+
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+/* SWIPER NAVIGATION */
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 64px !important;
+    height: 64px !important;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    transition: 0.4s ease;
+
+    color: white !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: var(--primary);
+
+    color: #000 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 1.2rem !important;
+}
+
+/* PAGINATION */
+
+.swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+
+    background: white !important;
+
+    opacity: 0.4 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--primary) !important;
+
+    opacity: 1 !important;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px) {
+
+    .hero-content {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-left p {
+        margin-inline: auto;
+    }
+
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none !important;
+    }
+}
+
+@media(max-width:768px) {
+
+    .hero-left h1 {
+        line-height: 1;
+    }
+
+    .hero-left p {
+        font-size: 1rem;
+    }
+
+    .hero-stat-card {
+        width: 100%;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+@media(max-width:500px) {
+
+    .hero-badge {
+        font-size: 0.75rem;
+    }
+
+    .hero-btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+}

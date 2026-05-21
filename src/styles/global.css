@@ -1,0 +1,567 @@
+/* =========================================================
+   GOOGLE FONTS
+========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Urbanist:wght@100..900&display=swap');
+
+/* =========================================================
+   RESET
+========================================================= */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: 'Urbanist', sans-serif;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(0, 255, 136, 0.08),
+            transparent 25%),
+        radial-gradient(circle at bottom right,
+            rgba(0, 255, 136, 0.05),
+            transparent 20%),
+        var(--bg);
+
+    color: var(--text);
+
+    overflow-x: hidden;
+    min-height: 100vh;
+
+    line-height: 1.7;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+:root {
+
+    /* PRIMARY */
+    --primary: #00ff88;
+    --primary-dark: #00cc6d;
+    --primary-light: #6fffc1;
+
+    /* BACKGROUND */
+    --bg: #050505;
+    --bg-secondary: #0d0d0d;
+    --bg-card: #111111;
+    --bg-soft: #171717;
+
+    /* TEXT */
+    --white: #ffffff;
+    --text: #f5f5f5;
+    --muted: #9ca3af;
+    --muted-light: #d1d5db;
+
+    /* BORDERS */
+    --border: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.14);
+
+    /* SHADOWS */
+    --shadow-sm: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+    --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.35);
+
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+    --shadow-primary:
+        0 0 30px rgba(0, 255, 136, 0.18);
+
+    /* RADIUS */
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    --radius-xl: 42px;
+
+    /* TRANSITION */
+    --transition: 0.35s ease;
+
+    /* CONTAINER */
+    --container: 1320px;
+
+    /* SECTION */
+    --section-padding: 8rem 0;
+}
+
+/* =========================================================
+   ROOT
+========================================================= */
+#root {
+    min-height: 100vh;
+}
+
+/* =========================================================
+   MEDIA
+========================================================= */
+img,
+picture {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+video {
+    display: block;
+    width: 100%;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+p {
+    color: var(--muted-light);
+}
+
+.text-muted {
+    color: var(--muted);
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    background: none;
+    transition: var(--transition);
+}
+
+/* PRIMARY BUTTON */
+
+.btn-primary {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+
+    padding: 1rem 2rem;
+
+    border-radius: 999px;
+
+    background: var(--primary);
+
+    color: #000;
+
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow-primary);
+
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.02);
+
+    background: var(--white);
+
+    box-shadow:
+        0 10px 35px rgba(0, 255, 136, 0.3);
+}
+
+/* SECONDARY BUTTON */
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+
+    padding: 1rem 2rem;
+
+    border-radius: 999px;
+
+    border: 1px solid var(--border-light);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(12px);
+
+    color: var(--white);
+
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: #000;
+
+    transform: translateY(-4px);
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
+input,
+textarea,
+select {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    font: inherit;
+
+    color: var(--white);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 1rem 1.2rem;
+
+    transition: var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(0, 255, 136, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--muted);
+}
+
+/* =========================================================
+   LISTS
+========================================================= */
+ul {
+    list-style: none;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+.container {
+    width: min(100%, var(--container));
+
+    margin-inline: auto;
+
+    padding-inline: 1.5rem;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+.section {
+    position: relative;
+    padding: var(--section-padding);
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+.section-title {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    color: var(--primary);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    font-size: clamp(2.7rem, 6vw, 5.5rem);
+
+    margin-top: 1rem;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+.section-title p {
+    max-width: 700px;
+
+    margin: 1.5rem auto 0;
+
+    font-size: 1.05rem;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+.card-glass {
+    background: rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-md);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+/* =========================================================
+   IMAGE OVERLAY EFFECT
+========================================================= */
+.image-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-hover img {
+    transition: transform 0.8s ease;
+}
+
+.image-hover::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.65),
+            transparent);
+
+    opacity: 0;
+
+    transition: var(--transition);
+}
+
+.image-hover:hover img {
+    transform: scale(1.08);
+}
+
+.image-hover:hover::after {
+    opacity: 1;
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+.badge-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.45rem 1rem;
+
+    border-radius: 999px;
+
+    background: rgba(0, 255, 136, 0.12);
+
+    border: 1px solid rgba(0, 255, 136, 0.18);
+
+    color: var(--primary);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* =========================================================
+   GLASS
+========================================================= */
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulseGlow {
+
+    0% {
+        box-shadow: 0 0 0 rgba(0, 255, 136, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(0, 255, 136, 0.25);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(0, 255, 136, 0);
+    }
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(to bottom,
+            var(--primary),
+            var(--primary-dark));
+
+    border-radius: 999px;
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+::selection {
+    background: var(--primary);
+    color: #000;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media(max-width:1200px) {
+
+    :root {
+        --section-padding: 7rem 0;
+    }
+}
+
+@media(max-width:992px) {
+
+    .section-title {
+        margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+        letter-spacing: -1px;
+    }
+}
+
+@media(max-width:768px) {
+
+    :root {
+        --section-padding: 6rem 0;
+    }
+
+    .container {
+        padding-inline: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .section-title h2 {
+        font-size: clamp(2.2rem, 10vw, 4rem);
+    }
+
+    .section-title p {
+        font-size: 0.98rem;
+    }
+}
+
+@media(max-width:480px) {
+
+    html {
+        font-size: 95%;
+    }
+
+    .section-title {
+        margin-bottom: 3rem;
+    }
+}
