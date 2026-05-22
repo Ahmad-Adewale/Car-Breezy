@@ -133,18 +133,6 @@ function Navbar() {
 
                     <div className="navbar-actions">
 
-                        {/* SEARCH */}
-
-                        <button className="nav-icon">
-                            <Search size={18} />
-                        </button>
-
-                        {/* NOTIFICATION */}
-
-                        <button className="nav-icon">
-                            <Bell size={18} />
-                        </button>
-
                         {/* ACCOUNT */}
 
                         <button
